@@ -7,8 +7,11 @@ export default function FileViewer(props) {
     const url = props.url;
     
     /**Get the extention of file */
-    let ext = url.split('.').reverse()[0];
-
+    let ext;
+    if(url) {
+        ext = url.split('.').reverse()[0];
+    }
+    
     /**Check for the extention of file */
     if(ext === 'pdf') {
         webViewUrl = `https://docs.google.com/viewerng/viewer?url=${url}`;
