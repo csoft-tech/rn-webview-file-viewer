@@ -19,7 +19,7 @@ Light weight react native library for file viewer using react-native-webview.
 
 ## Usage
 
-To use react-native-qrcode-scanner, `import` the `rn-webview-file-viewer` module and use the `<FileViewer />` tag.
+To use rn-webview-file-viewer, `import` the `rn-webview-file-viewer` module and use the `<FileViewer />` tag.
 
 Here is an example of basic usage:
 
