@@ -14,12 +14,12 @@ Light weight react native library for file viewer using react-native-webview.
 
 ## Installation
 
-1. Run `npm install rn-webview-file-viewer --save`
+1. Run `npm install @csoft-tech/rn-webview-file-viewer@1.0.0 --save`
 
 
 ## Usage
 
-To use rn-webview-file-viewer, `import` the `rn-webview-file-viewer` module and use the `<FileViewer />` tag.
+To use rn-webview-file-viewer, `import` the `@csoft-tech/rn-webview-file-viewer` module and use the `<FileViewer />` tag.
 
 Here is an example of basic usage:
 
@@ -32,7 +32,7 @@ import {
   AppRegistry,
 } from 'react-native';
 
-import FileViewer from 'rn-webview-file-viewer';
+import FileViewer from '@csoft-tech/rn-webview-file-viewer';
 
 function FileViewScreen() {
 
