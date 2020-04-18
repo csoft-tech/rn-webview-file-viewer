@@ -12,10 +12,16 @@ Light weight react native library for file viewer using react-native-webview.
 
 1. `npm install react-native-webview --save`
 
+or 
+
+`yarn add -W react-native-webview`
+
 ## Installation
 
 1. Run `npm install @csoft-tech/rn-webview-file-viewer@1.0.0 --save`
+or
 
+`yarn add -W https://github.com/csoft-tech/rn-webview-file-viewer.git`
 
 ## Usage
 
