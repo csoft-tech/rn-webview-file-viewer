@@ -1,10 +1,9 @@
 import React from 'react';
 import { WebView } from 'react-native-webview';
-import { View, Text } from 'react-native';
+import { Modal, View, Text } from 'react-native';
 import styles from './styles';
 
 export default function FileViewer(props) {
-    
     let webViewUrl;
     let _webView;
     const url = props.url;
@@ -27,12 +26,17 @@ export default function FileViewer(props) {
     } else {
         _webView = <Text>No url found!</Text>
     }
-
-
     
     return (
         <View style={styles.webView}>
-            {_webView}
+            <Modal 
+                animationType = {"slide"} 
+                transparent = {false}
+                visible = {props.isVisible}
+            >
+                <WebView source={{ uri: webViewUrl }} />
+                <View style={styles.button}>{props.children}</View>
+            </Modal>
         </View>
     )
 }

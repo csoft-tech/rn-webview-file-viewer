@@ -31,15 +31,28 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
+import {Button, Text, Icon} from 'native-base';
 
 import FileViewer from '@csoft-tech/rn-webview-file-viewer';
 
 function FileViewScreen() {
 
+    const [isVisible, setVisible] = useState(false);
+
     const url = "http://www.africau.edu/images/default/sample.pdf";
     
     return (
-        <FileViewer url = {url}/>
+        
+        <Button onPress = {() => {setVisible(true)}}>
+            <Text>Open WebView Modal</Text>
+        </Button>
+        
+        <FileViewer url={url} isVisible={isVisible}>
+            <Button transparent onPress = {() => {setVisible(false)}}>
+                <Icon name='close' />
+            </Button>
+        </FileViewer>
+
     );
 }
 
