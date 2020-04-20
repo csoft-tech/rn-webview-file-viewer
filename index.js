@@ -6,23 +6,25 @@ import styles from './styles';
 export default function FileViewer(props) {
     let webViewUrl;
     let _webView;
-    const url = props.url;
+    let url = props.url;
     
     /**Get the extention of file */
     let ext;
     if(url) {
-        ext = url.split('.').reverse()[0];
-    } 
+        const pdfURL = url.split('?');
+        ext = pdfURL[0].split('.').reverse()[0];
+    }
     
     /**Check for the extention of file */
     if(ext === 'pdf') {
-        webViewUrl = `https://docs.google.com/viewerng/viewer?url=${url}`;        
+        url = encodeURIComponent(url);
+        webViewUrl = `https://docs.google.com/viewerng/viewer?url=${url}`; 
     } else {
-        webViewUrl = url;
+        webViewUrl = props.url;   
     }
-    
-    if(webViewUrl) {
-        _webView = <WebView source={{ uri: webViewUrl }} />;
+
+    if(url) {
+        _webView = <WebView source={{ uri: webViewUrl }} />
     } else {
         _webView = <Text>No url found!</Text>
     }
@@ -34,7 +36,7 @@ export default function FileViewer(props) {
                 transparent = {false}
                 visible = {props.isVisible}
             >
-                <WebView source={{ uri: webViewUrl }} />
+                {_webView}
                 <View style={styles.button}>{props.children}</View>
             </Modal>
         </View>
