@@ -1,6 +1,6 @@
 {
   "name": "@csoft-tech/rn-webview-file-viewer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Light weight react native file viewer using react-native-webview",
   "main": "index.js",
   "scripts": {
