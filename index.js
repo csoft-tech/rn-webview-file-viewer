@@ -36,6 +36,7 @@ export default function FileViewer(props) {
                 transparent = {false}
                 visible = {props.isVisible}
             >
+               {props.showTransparentView? <View transparent style={styles.transparentView} /> :null}
                 {_webView}
                 <View style={styles.button}>{props.children}</View>
             </Modal>
