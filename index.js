@@ -33,7 +33,7 @@ export default function FileViewer(props) {
     const onMessage = (event) => {
         const baseURI = event.nativeEvent.data    
         url = encodeURIComponent(url);
-        if (baseURI !== `https://docs.google.com/viewerng/viewer?url=${url}`  &&  preview) {
+        if (baseURI !== `https://docs.google.com/viewerng/viewer?url=${url}` && baseURI !== props.url &&  preview) {
             setWebViewUrl(props.url)
             setPreview(false)
             Alert.alert(
