@@ -1,68 +1,30 @@
-import React,{useEffect, useState} from 'react';
+import React from 'react';
 import { WebView } from 'react-native-webview';
-import { Modal, View, Text,Alert } from 'react-native';
+import { Modal, View, Text } from 'react-native';
 import styles from './styles';
 
 export default function FileViewer(props) {
-    let url = props.url;
-    const[webViewUrl,setWebViewUrl] =useState(null);
-    const[preview,setPreview] =useState(true);
+    let webViewUrl;
     let _webView;
-
-
-    useEffect(() =>{
-
+    let url = props.url;
+    
     /**Get the extention of file */
     let ext;
-   
-        if(url) {
-            const pdfURL = url.split('?');
-            ext = pdfURL[0].split('.').reverse()[0];
-        }
-        
-        /**Check for the extention of file */
-        if(ext === 'pdf' && preview) {
-            url = encodeURIComponent(url);
-            setWebViewUrl(`https://docs.google.com/viewerng/viewer?url=${url}`); 
-        }else{
-            setWebViewUrl(`${url}`); 
-        } 
-    },[props.url])
-
-
-    const onMessage = (event) => {
-        const baseURI = event.nativeEvent.data    
+    if(url) {
+        const pdfURL = url.split('?');
+        ext = pdfURL[0].split('.').reverse()[0];
+    }
+    
+    /**Check for the extention of file */
+    if(ext === 'pdf') {
         url = encodeURIComponent(url);
-        if (baseURI !== `https://docs.google.com/viewerng/viewer?url=${url}`  &&  preview) {
-            setWebViewUrl(props.url)
-            setPreview(false)
-            Alert.alert(
-                ' ',
-                'Your file will be downloaded shortly.Please check your downloads.',
-                [
-                  {
-                    text: 'OK',
-                    onPress: () => {props.setFileData({isVisible: false, url: null})}, 
-                  },
-                ],
-                { cancelable: false }
-              );
-        }   
-      }
+        webViewUrl = `https://docs.google.com/viewerng/viewer?url=${url}`; 
+    } else {
+        webViewUrl = props.url;   
+    }
 
-    const myInjectedJs = `    
-    (function(){ 
-      window.ReactNativeWebView.postMessage(window.document.baseURI);
-    })();`
-    if(webViewUrl && webViewUrl != null) {
-        _webView = <WebView 
-                        source={{ uri: webViewUrl }} 
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                        startInLoadingState={true}
-                        injectedJavaScript={myInjectedJs}
-                        onMessage={onMessage}
-                    />
+    if(url) {
+        _webView = <WebView source={{ uri: webViewUrl }} />
     } else {
         _webView = <Text>No url found!</Text>
     }
